@@ -7,8 +7,14 @@ It has almost the same API as [https://npmjs.org/package/hal](naholyr/js-hal) an
 
 However this module differs from [https://npmjs.org/package/hal](naholyr/js-hal) in some features:
 
- * hal.Link and hal.Resource can be cloned by `var cloned_obj = new hal.Resource(obj);`
- * Our license is clearly declared as open source (MIT)
+ * `hal.Link` and `hal.Resource` can be cloned using constructor: `var cloned_obj = new hal.Resource(obj);`
+ * Both `hal.Resource.link()` and `hal.Resource.embed()` can be called with an array of links or resources
+ * Our license is clearly open source (MIT)
+
+License
+-------
+
+It's open source, MIT.
 
 Installation
 ------------
