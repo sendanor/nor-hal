@@ -200,6 +200,12 @@ HAL_Resource.prototype.toJSON = function() {
 	return obj;
 };
 
+/** Get string presentation */
+HAL_Resource.prototype.toString = function() {
+	var self = this;
+	return JSON.stringify(self, null, 1);
+};
+
 /* Parse HAL resource */
 HAL_Resource.parse = function(obj) {
 	if(typeof obj === 'string') {
