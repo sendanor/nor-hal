@@ -72,17 +72,19 @@ function HAL_Resource(obj, uri) {
 	
 	if(obj instanceof HAL_Resource) {
 		self._data = do_clone_obj(obj._data);
+	} if(obj instanceof Array) {
+		throw new TypeError("Arrays are not supported!");
 	} else if(typeof obj === 'object') {
 		self._data = do_clone_obj(obj);
 	} else {
 		self._data = {};
 	}
 	
-	if(self._data._links === undefined) {
+	if(typeof self._data._links !== 'object') {
 		self._data._links = {};
 	}
 	
-	if(self._data._embedded === undefined) {
+	if(typeof self._data._embedded !== 'object') {
 		self._data._embedded = {};
 	}
 	
