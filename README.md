@@ -9,6 +9,7 @@ However this module differs from [naholyr/js-hal](https://npmjs.org/package/hal)
 
  * `hal.Link` and `hal.Resource` can be cloned using constructor: `var cloned_obj = new hal.Resource(obj);`
  * Both `hal.Resource.link(rel, array)` and `hal.Resource.embed(rel, array)` can be called with an array of links or resources
+ * Our library doesn't support XML (yet)
  * Our license is clearly open source (MIT)
 
 License
