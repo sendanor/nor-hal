@@ -27,7 +27,7 @@ Usage
 -----
 
 ```javascript
-var hal = require('../src/hal.js');
+var hal = require('nor-hal');
 var resource = new hal.Resource({name: "Orders"}, '/orders')
 	.link('orders', '/orders/1')
 	.link('orders', '/orders/2')
