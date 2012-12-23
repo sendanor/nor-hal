@@ -1,11 +1,11 @@
 node-nor-hal
 ============
 
-The library is an implementation of [http://stateless.co/hal_specification.html](Hypertext Application Language) for Node.js and JavaScript.
+The library is an implementation of [Hypertext Application Language](http://stateless.co/hal_specification.html) for Node.js and JavaScript.
 
-It has almost the same API as [https://npmjs.org/package/hal](naholyr/js-hal) and should be possible to drop in replace with it.
+It has almost the same API as [naholyr/js-hal](https://npmjs.org/package/hal) and should be possible to drop in replace with it.
 
-However this module differs from [https://npmjs.org/package/hal](naholyr/js-hal) in some features:
+However this module differs from [naholyr/js-hal](https://npmjs.org/package/hal) in some features:
 
  * `hal.Link` and `hal.Resource` can be cloned using constructor: `var cloned_obj = new hal.Resource(obj);`
  * Both `hal.Resource.link()` and `hal.Resource.embed()` can be called with an array of links or resources
