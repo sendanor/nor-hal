@@ -134,7 +134,7 @@ HAL_Resource.prototype.link = function(rel, uri) {
 	if(self._helpers.linkRelExists(rel)) {
 		if(uri instanceof Array) {
 			if(links[rel] instanceof Array) {
-				links[rel].push.apply(uri);
+				links[rel] =links[rel].concat(uri);
 			} else {
 				tmp = links[rel];
 				links[rel] = [tmp].concat(uri);
@@ -144,8 +144,7 @@ HAL_Resource.prototype.link = function(rel, uri) {
 				links[rel].push(uri);
 			} else {
 				tmp = links[rel];
-				links[rel] = [tmp];
-				links[rel].push(uri);
+				links[rel] = [tmp].concat([uri]);
 			}
 		}
 	} else {
