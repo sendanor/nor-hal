@@ -134,7 +134,7 @@ HAL_Resource.prototype.link = function(rel, uri) {
 	if(self._helpers.linkRelExists(rel)) {
 		if(uri instanceof Array) {
 			if(links[rel] instanceof Array) {
-				links[rel].push.apply(uri);
+				links[rel].push.apply(links[rel], uri);
 			} else {
 				tmp = links[rel];
 				links[rel] = [tmp].concat(uri);
@@ -144,8 +144,7 @@ HAL_Resource.prototype.link = function(rel, uri) {
 				links[rel].push(uri);
 			} else {
 				tmp = links[rel];
-				links[rel] = [tmp];
-				links[rel].push(uri);
+				links[rel] = [tmp, uri];
 			}
 		}
 	} else {
@@ -172,7 +171,7 @@ HAL_Resource.prototype.embed = function(rel, res) {
 	if(self._helpers.embeddedRelExists(rel)) {
 		if(res instanceof Array) {
 			if(embedded[rel] instanceof Array) {
-				embedded[rel].push.apply(res);
+				embedded[rel].push.apply(embedded[rel], res);
 			} else {
 				tmp = embedded[rel];
 				embedded[rel] = [tmp].concat(res);
@@ -182,8 +181,7 @@ HAL_Resource.prototype.embed = function(rel, res) {
 				embedded[rel].push(res);
 			} else {
 				tmp = embedded[rel];
-				embedded[rel] = [tmp];
-				embedded[rel].push(res);
+				embedded[rel] = [tmp, res];
 			}
 		}
 	} else {
