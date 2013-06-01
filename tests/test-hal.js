@@ -1,7 +1,9 @@
 "use strict";
 
+var coverage = require('./coverage.js');
+
 //var HAL = require('hal');
-var HAL = require('../src-inst/hal.js');
+var HAL = coverage.require('hal.js');
 
 var vows = require('vows');
 var assert = require('assert');

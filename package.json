@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "vows tests/*.js --spec --isolate"
+    "test": "vows tests/test-*.js --spec --isolate"
   },
   "repository": {
     "type": "git",
