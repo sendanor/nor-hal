@@ -14,6 +14,14 @@ vows.describe('Testing HAL').addBatch({
 		'.Link is function': function(hal) { assert.isFunction(hal.Link); },
 		'.Resource is function': function(hal) { assert.isFunction(hal.Resource); }
 	},
+	"HAL.Link('self', '/orders')": {
+		topic: HAL.Link('self', '/orders'),
+		"is object": function(link) { assert.isObject(link); },
+		"is HAL.Link": function(link) { assert.instanceOf(link, HAL.Link); },
+		".rel equals 'self'": function(link) { assert.equal(link.rel, 'self'); },
+		".href equals /orders": function(link) { assert.equal(link.href, '/orders'); },
+		".name is undefined": function(link) { assert.isUndefined(link.name); }
+	},
 	"new HAL.Link('self', '/orders')": {
 		topic: new HAL.Link('self', '/orders'),
 		"is object": function(link) { assert.isObject(link); },
