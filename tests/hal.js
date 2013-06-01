@@ -99,6 +99,16 @@ vows.describe('Testing HAL').addBatch({
 			"._links.self is object": function(o) { assert.isObject(o._links.self); },
 			"._links.self.href is '/order/1'": function(o) { assert.equal(o._links.self.href, '/order/1'); }
 		},
+		".link() throws TypeError": function(res) {
+			assert.throws(function () {
+				return res.link();
+			}, TypeError);
+		},
+		".link('', '/orders') throws TypeError": function(res) {
+			assert.throws(function () {
+				return res.link('', '/orders');
+			}, TypeError);
+		},
 		".link('orders', '/orders')": {
 			topic: function(res) { return HAL.Resource(res).link('orders', '/orders'); },
 			"is object": function(res) { assert.isObject(res); },
