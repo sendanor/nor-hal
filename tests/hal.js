@@ -1,9 +1,10 @@
 "use strict";
 
+//var HAL = require('hal');
+var HAL = require('../src-inst/hal.js');
+
 var vows = require('vows');
 var assert = require('assert');
-var HAL = require('../src/hal.js');
-//var HAL = require('hal');
 
 /* */
 vows.describe('Testing HAL').addBatch({
