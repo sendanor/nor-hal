@@ -234,6 +234,46 @@ vows.describe('Testing HAL').addBatch({
 							"._links.orders[4].href is '/orders5'": function(o) { assert.equal(o._links.orders[4].href, '/orders5'); }
 						}
 					}
+				},
+
+				/* Test for .link() when _links is an array but new uri is not */
+				".link('orders', '/orders4')": {
+					topic: function(res) { return HAL.Resource(res).link('orders', '/orders4'); },
+					"is object": function(res) { assert.isObject(res); },
+					"is HAL.Resource": function(res) { assert.instanceOf(res, HAL.Resource); },
+					".toJSON()": {
+						topic: function(res) { return res.toJSON(); },
+						"is object": function(o) { assert.isObject(o); },
+						".name is 'Item'": function(o) { assert.equal(o.name, 'Item'); },
+						".sum is 12.34": function(o) { assert.equal(o.sum, 12.34); },
+						"._links is object": function(o) { assert.isObject(o._links); },
+						"._links.self is object": function(o) { assert.isObject(o._links.self); },
+						"._links.self.href is '/order/1'": function(o) { assert.equal(o._links.self.href, '/order/1'); },
+						"._links.orders is array": function(o) { assert.isArray(o._links.orders); },
+						"._links.orders[0].href is '/orders'": function(o) { assert.equal(o._links.orders[0].href, '/orders'); },
+						"._links.orders[1].href is '/orders2'": function(o) { assert.equal(o._links.orders[1].href, '/orders2'); },
+						"._links.orders[2].href is '/orders3'": function(o) { assert.equal(o._links.orders[2].href, '/orders3'); },
+						"._links.orders[3].href is '/orders4'": function(o) { assert.equal(o._links.orders[3].href, '/orders4'); }
+					},
+					".parse()": {
+						topic: function(res) { return HAL.Resource.parse( JSON.stringify(res) ); },
+						"is object": function(res) { assert.isObject(res); },
+						"is HAL.Resource": function(res) { assert.instanceOf(res, HAL.Resource); },
+						".toJSON()": {
+							topic: function(res) { return res.toJSON(); },
+							"is object": function(o) { assert.isObject(o); },
+							".name is 'Item'": function(o) { assert.equal(o.name, 'Item'); },
+							".sum is 12.34": function(o) { assert.equal(o.sum, 12.34); },
+							"._links is object": function(o) { assert.isObject(o._links); },
+							"._links.self is object": function(o) { assert.isObject(o._links.self); },
+							"._links.self.href is '/order/1'": function(o) { assert.equal(o._links.self.href, '/order/1'); },
+							"._links.orders is array": function(o) { assert.isArray(o._links.orders); },
+							"._links.orders[0].href is '/orders'": function(o) { assert.equal(o._links.orders[0].href, '/orders'); },
+							"._links.orders[1].href is '/orders2'": function(o) { assert.equal(o._links.orders[1].href, '/orders2'); },
+							"._links.orders[2].href is '/orders3'": function(o) { assert.equal(o._links.orders[2].href, '/orders3'); },
+							"._links.orders[3].href is '/orders4'": function(o) { assert.equal(o._links.orders[3].href, '/orders4'); }
+						}
+					}
 				}
 
 			}
