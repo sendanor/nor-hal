@@ -22,6 +22,11 @@ vows.describe('Testing HAL').addBatch({
 		".href equals /orders": function(link) { assert.equal(link.href, '/orders'); },
 		".name is undefined": function(link) { assert.isUndefined(link.name); }
 	},
+	"new HAL.Link('self') throws TypeError": function() {
+		assert.throws(function () {
+			return new HAL.Link('self');
+		}, TypeError);
+	},
 	"new HAL.Link('self', '/orders')": {
 		topic: new HAL.Link('self', '/orders'),
 		"is object": function(link) { assert.isObject(link); },
