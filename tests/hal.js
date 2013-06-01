@@ -318,6 +318,143 @@ vows.describe('Testing HAL').addBatch({
 			}
 		}
 	},
+	"new HAL.Resource({'name':'Orders'}, '/orders') with 4 x .embeds": {
+		topic: function() {
+			return new HAL.Resource({'name':'Orders'}, '/orders')
+				.embed("orders", HAL.Resource({'name':'Item 1', 'sum':12.34, 'amount':2}, '/order/1'))
+				.embed("orders", HAL.Resource({'name':'Item 2', 'sum':43.21, 'amount':1}, '/order/2'))
+				.embed("orders", [ HAL.Resource({'name':'Item 3', 'sum':10.12, 'amount':10}, '/order/3'),
+				                 HAL.Resource({'name':'Item 4', 'sum':999.912, 'amount':3}, '/order/4') ]);
+		},
+		"is object": function(res) { assert.isObject(res); },
+		"is HAL.Resource": function(res) { assert.instanceOf(res, HAL.Resource); },
+		".embed() throws TypeError": function(res) {
+			assert.throws(function () {
+				return res.embed();
+			}, TypeError);
+		},
+		".embed('', '/orders') throws TypeError": function(res) {
+			assert.throws(function () {
+				return res.embed('', '/orders/3');
+			}, TypeError);
+		},
+		".toJSON()": {
+			topic: function(res) { return res.toJSON(); },
+			"is object": function(o) { assert.isObject(o); },
+			".name is 'Orders'": function(o) { assert.equal(o.name, 'Orders'); },
+			"._links is object": function(o) { assert.isObject(o._links); },
+			"._links keys length": function(o) { assert.lengthOf(Object.keys(o._links), 1); },
+			"._links.self is object": function(o) { assert.isObject(o._links.self); },
+			"._links.self.href is '/orders'": function(o) { assert.equal(o._links.self.href, '/orders'); },
+			"._embedded is object": function(o) { assert.isObject(o._embedded); },
+			"._embedded keys length": function(o) { assert.lengthOf(Object.keys(o._embedded), 1); },
+			"._embedded.orders keys length": function(o) { assert.lengthOf(o._embedded.orders, 4); },
+			"._embedded.orders[0].toJSON()": function(o) {
+				assert.equal(JSON.stringify(o._embedded.orders[0]), 
+					'{"name":"Item 1","sum":12.34,"amount":2,"_links":{"self":{"href":"/order/1"}}}');
+			},
+			"._embedded.orders[1].toJSON()": function(o) {
+				assert.equal(JSON.stringify(o._embedded.orders[1]), 
+					'{"name":"Item 2","sum":43.21,"amount":1,"_links":{"self":{"href":"/order/2"}}}');
+			},
+			"._embedded.orders[2].toJSON()": function(o) {
+				assert.equal(JSON.stringify(o._embedded.orders[2]), 
+					'{"name":"Item 3","sum":10.12,"amount":10,"_links":{"self":{"href":"/order/3"}}}');
+			},
+			"._embedded.orders[3].toJSON()": function(o) {
+				assert.equal(JSON.stringify(o._embedded.orders[3]), 
+					'{"name":"Item 4","sum":999.912,"amount":3,"_links":{"self":{"href":"/order/4"}}}');
+			}
+		}
+	},
+	"new HAL.Resource({'name':'Orders'}, '/orders') with 3 x .embeds (single vs array)": {
+		topic: function() {
+			return new HAL.Resource({'name':'Orders'}, '/orders')
+				.embed("orders", HAL.Resource({'name':'Item 1', 'sum':12.34, 'amount':2}, '/order/1'))
+				.embed("orders", [ HAL.Resource({'name':'Item 3', 'sum':10.12, 'amount':10}, '/order/3'),
+				                 HAL.Resource({'name':'Item 4', 'sum':999.912, 'amount':3}, '/order/4') ]);
+		},
+		"is object": function(res) { assert.isObject(res); },
+		"is HAL.Resource": function(res) { assert.instanceOf(res, HAL.Resource); },
+		".embed() throws TypeError": function(res) {
+			assert.throws(function () {
+				return res.embed();
+			}, TypeError);
+		},
+		".embed('', '/orders') throws TypeError": function(res) {
+			assert.throws(function () {
+				return res.embed('', '/orders/3');
+			}, TypeError);
+		},
+		".toJSON()": {
+			topic: function(res) { return res.toJSON(); },
+			"is object": function(o) { assert.isObject(o); },
+			".name is 'Orders'": function(o) { assert.equal(o.name, 'Orders'); },
+			"._links is object": function(o) { assert.isObject(o._links); },
+			"._links keys length": function(o) { assert.lengthOf(Object.keys(o._links), 1); },
+			"._links.self is object": function(o) { assert.isObject(o._links.self); },
+			"._links.self.href is '/orders'": function(o) { assert.equal(o._links.self.href, '/orders'); },
+			"._embedded is object": function(o) { assert.isObject(o._embedded); },
+			"._embedded keys length": function(o) { assert.lengthOf(Object.keys(o._embedded), 1); },
+			"._embedded.orders keys length": function(o) { assert.lengthOf(o._embedded.orders, 3); },
+			"._embedded.orders[0].toJSON()": function(o) {
+				assert.equal(JSON.stringify(o._embedded.orders[0]), 
+					'{"name":"Item 1","sum":12.34,"amount":2,"_links":{"self":{"href":"/order/1"}}}');
+			},
+			"._embedded.orders[1].toJSON()": function(o) {
+				assert.equal(JSON.stringify(o._embedded.orders[1]), 
+					'{"name":"Item 3","sum":10.12,"amount":10,"_links":{"self":{"href":"/order/3"}}}');
+			},
+			"._embedded.orders[2].toJSON()": function(o) {
+				assert.equal(JSON.stringify(o._embedded.orders[2]), 
+					'{"name":"Item 4","sum":999.912,"amount":3,"_links":{"self":{"href":"/order/4"}}}');
+			}
+		}
+	},
+	"new HAL.Resource({'name':'Orders'}, '/orders') with 3 x .embeds (array vs single)": {
+		topic: function() {
+			return new HAL.Resource({'name':'Orders'}, '/orders')
+				.embed("orders", [ HAL.Resource({'name':'Item 3', 'sum':10.12, 'amount':10}, '/order/3'),
+				                 HAL.Resource({'name':'Item 4', 'sum':999.912, 'amount':3}, '/order/4') ])
+				.embed("orders", HAL.Resource({'name':'Item 1', 'sum':12.34, 'amount':2}, '/order/1'));
+		},
+		"is object": function(res) { assert.isObject(res); },
+		"is HAL.Resource": function(res) { assert.instanceOf(res, HAL.Resource); },
+		".embed() throws TypeError": function(res) {
+			assert.throws(function () {
+				return res.embed();
+			}, TypeError);
+		},
+		".embed('', '/orders') throws TypeError": function(res) {
+			assert.throws(function () {
+				return res.embed('', '/orders/3');
+			}, TypeError);
+		},
+		".toJSON()": {
+			topic: function(res) { return res.toJSON(); },
+			"is object": function(o) { assert.isObject(o); },
+			".name is 'Orders'": function(o) { assert.equal(o.name, 'Orders'); },
+			"._links is object": function(o) { assert.isObject(o._links); },
+			"._links keys length": function(o) { assert.lengthOf(Object.keys(o._links), 1); },
+			"._links.self is object": function(o) { assert.isObject(o._links.self); },
+			"._links.self.href is '/orders'": function(o) { assert.equal(o._links.self.href, '/orders'); },
+			"._embedded is object": function(o) { assert.isObject(o._embedded); },
+			"._embedded keys length": function(o) { assert.lengthOf(Object.keys(o._embedded), 1); },
+			"._embedded.orders keys length": function(o) { assert.lengthOf(o._embedded.orders, 3); },
+			"._embedded.orders[0].toJSON()": function(o) {
+				assert.equal(JSON.stringify(o._embedded.orders[0]), 
+					'{"name":"Item 3","sum":10.12,"amount":10,"_links":{"self":{"href":"/order/3"}}}');
+			},
+			"._embedded.orders[1].toJSON()": function(o) {
+				assert.equal(JSON.stringify(o._embedded.orders[1]), 
+					'{"name":"Item 4","sum":999.912,"amount":3,"_links":{"self":{"href":"/order/4"}}}');
+			},
+			"._embedded.orders[2].toJSON()": function(o) {
+				assert.equal(JSON.stringify(o._embedded.orders[2]), 
+					'{"name":"Item 1","sum":12.34,"amount":2,"_links":{"self":{"href":"/order/1"}}}');
+			}
+		}
+	},
 	"new HAL.Resource(['Hello', 'World'], '/orders') throws TypeError": function() {
 		assert.throws(function () {
 			return new HAL.Resource(['Hello', 'World'], '/orders');
