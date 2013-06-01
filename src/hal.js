@@ -72,7 +72,7 @@ function HAL_Resource(obj, uri) {
 	
 	if(obj instanceof HAL_Resource) {
 		self._data = do_clone_obj(obj._data);
-	} if(obj instanceof Array) {
+	} else if(obj instanceof Array) {
 		throw new TypeError("Arrays are not supported!");
 	} else if(typeof obj === 'object') {
 		self._data = do_clone_obj(obj);
