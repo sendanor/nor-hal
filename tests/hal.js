@@ -78,6 +78,12 @@ vows.describe('Testing HAL').addBatch({
 		topic: new HAL.Resource({'name':'Item', 'sum':12.34}, '/order/1'),
 		"is object": function(res) { assert.isObject(res); },
 		"is HAL.Resource": function(res) { assert.instanceOf(res, HAL.Resource); },
+		".data()": {
+			topic: function(res) { return res.data(); },
+			"is object": function(o) { assert.isObject(o); },
+			"Object.keys(o).toString() is 'name,sum'": function(o) { assert.strictEqual(Object.keys(o).toString(), 'name,sum'); },
+			"JSON.stringify(o)": function(o) { assert.strictEqual(JSON.stringify(o), '{"name":"Item","sum":12.34}'); }
+		},
 		".links()": {
 			topic: function(res) { return res.links(); },
 			"is object": function(o) { assert.isObject(o); },
