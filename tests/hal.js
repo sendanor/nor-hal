@@ -485,6 +485,19 @@ vows.describe('Testing HAL').addBatch({
 			topic: function(res) { return res.data(); },
 			"is object": function(o) { assert.isObject(o); },
 			"Object.keys(o).toString() is ''": function(o) { assert.strictEqual(Object.keys(o).toString(), ''); },
+		},
+		".toString()": {
+			topic: function(res) { return res.toString(); },
+			"is string": function(o) { assert.isString(o); },
+			"string content valid": function(str) {
+				assert.strictEqual(str, '{\n'+
+					' "_links": {\n'+
+					'  "self": {\n'+
+					'   "href": "/orders"\n'+
+					'  }\n'+
+					' }\n'+
+					'}');
+			}
 		}
 	}
 }).export(module);
