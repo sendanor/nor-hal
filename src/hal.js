@@ -77,6 +77,7 @@ function HAL_Resource(obj, uri) {
 	} else if(typeof obj === 'object') {
 		self._data = do_clone_obj(obj);
 	} else {
+		console.warn('Warning! HAL.Resource(obj, uri) called with obj of type ' + typeof obj + ' -- using empty object instead.');
 		self._data = {};
 	}
 	
