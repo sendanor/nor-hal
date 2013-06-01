@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/jheusala/node-nor-hal.png?branch=master)](http://travis-ci.org/jheusala/node-nor-hal)
+
 node-nor-hal
 ============
 
