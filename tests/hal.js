@@ -287,6 +287,16 @@ vows.describe('Testing HAL').addBatch({
 		},
 		"is object": function(res) { assert.isObject(res); },
 		"is HAL.Resource": function(res) { assert.instanceOf(res, HAL.Resource); },
+		".embed() throws TypeError": function(res) {
+			assert.throws(function () {
+				return res.embed();
+			}, TypeError);
+		},
+		".embed('', '/orders') throws TypeError": function(res) {
+			assert.throws(function () {
+				return res.embed('', '/orders/3');
+			}, TypeError);
+		},
 		".toJSON()": {
 			topic: function(res) { return res.toJSON(); },
 			"is object": function(o) { assert.isObject(o); },
