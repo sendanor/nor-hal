@@ -251,6 +251,11 @@ vows.describe('Testing HAL').addBatch({
 					'{"name":"Item 2","sum":43.21,"amount":1,"_links":{"self":{"href":"/order/2"}}}');
 			}
 		}
+	},
+	"new HAL.Resource(['Hello', 'World'], '/orders') throws TypeError": function() {
+		assert.throws(function () {
+			return new HAL.Resource(['Hello', 'World'], '/orders');
+		}, TypeError);
 	}
 }).export(module);
 
