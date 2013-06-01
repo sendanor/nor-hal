@@ -109,11 +109,12 @@ HAL_Resource.prototype.links = function() {
 	return self._data._links;
 };
 
-/** Get links */
+/** Get plain data */
 HAL_Resource.prototype.data = function() {
 	var self = this;
 	var obj = do_clone_obj(self._data);
 	delete obj._links;
+	delete obj._embedded;
 	return obj;
 };
 

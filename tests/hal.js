@@ -257,6 +257,11 @@ vows.describe('Testing HAL').addBatch({
 			return new HAL.Resource(['Hello', 'World'], '/orders');
 		}, TypeError);
 	},
+	"new HAL.Resource({'name':'Something') throws TypeError": function() {
+		assert.throws(function () {
+			return new HAL.Resource({'name': 'Something'});
+		}, TypeError);
+	},
 	"new HAL.Resource('Hello world', '/orders')": {
 		topic: function() {
 			return new HAL.Resource('Hello World', '/orders');
@@ -272,6 +277,11 @@ vows.describe('Testing HAL').addBatch({
 			"._links.self is object": function(o) { assert.isObject(o._links.self); },
 			"._links.self.href is '/orders'": function(o) { assert.equal(o._links.self.href, '/orders'); },
 			"._embedded is undefined": function(o) { assert.isUndefined(o._embedded); },
+		},
+		".data()": {
+			topic: function(res) { return res.data(); },
+			"is object": function(o) { assert.isObject(o); },
+			"Object.keys(o).toString() is ''": function(o) { assert.strictEqual(Object.keys(o).toString(), ''); },
 		}
 	}
 }).export(module);
