@@ -1,6 +1,6 @@
 {
   "name": "nor-hal",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Hypertext Application Language Library for Node.js",
   "main": "src/hal.js",
   "directories": {

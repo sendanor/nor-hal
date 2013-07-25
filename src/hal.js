@@ -31,10 +31,17 @@ function HAL_Link(rel, uri) {
 	} else {
 	
 		// Strings
-		['name', 'rel', 'href', 'hreflang', 'title'].filter(function(key) {
+		['rel', 'href', 'hreflang', 'title'].filter(function(key) {
 			return uri.hasOwnProperty(key);
 		}).forEach(function(key) {
 			self[key] = ''+uri[key];
+		});
+		
+		// Mix-types
+		['name'].filter(function(key) {
+			return uri.hasOwnProperty(key);
+		}).forEach(function(key) {
+			self[key] = uri[key];
 		});
 		
 		// Booleans
