@@ -37,7 +37,7 @@ vows.describe('Testing HAL').addBatch({
 		".href equals /orders": function(link) { assert.equal(link.href, '/orders'); },
 		".name is undefined": function(link) { assert.isUndefined(link.name); }
 	},
-	"new HAL.Link({'self', href: '/orders', title: 'Orders'})": {
+	"new HAL.Link('self', {href: '/orders', title: 'Orders'})": {
 		topic: new HAL.Link('self', {href: '/orders', title: 'Orders'}),
 		"is object": function(link) { assert.isObject(link); },
 		"is HAL.Link": function(link) { assert.instanceOf(link, HAL.Link); },
@@ -48,7 +48,18 @@ vows.describe('Testing HAL').addBatch({
 		".hreflang is undefined": function(link) { assert.isUndefined(link.hreflang); },
 		".templated is undefined": function(link) { assert.isUndefined(link.templated); }
 	},
-	"new HAL.Link({'self', href: '/orders{?id}', title: 'Order', templated:true})": {
+	"new HAL.Link('self', {href: '/orders/1', title: 'Order #1', 'name':1})": {
+		topic: new HAL.Link('self', {href: '/orders/1', title: 'Order #1', name:1}),
+		"is object": function(link) { assert.isObject(link); },
+		"is HAL.Link": function(link) { assert.instanceOf(link, HAL.Link); },
+		".href equals '/orders/1'": function(link) { assert.equal(link.href, '/orders/1'); },
+		".title equals 'Order #1'": function(link) { assert.equal(link.title, 'Order #1'); },
+		".name is 1": function(link) { assert.strictEqual(link.name, 1); },
+		".rel is 'self'": function(link) { assert.equal(link.rel, 'self'); },
+		".hreflang is undefined": function(link) { assert.isUndefined(link.hreflang); },
+		".templated is undefined": function(link) { assert.isUndefined(link.templated); }
+	},
+	"new HAL.Link('self', {href: '/orders{?id}', title: 'Order', templated:true})": {
 		topic: new HAL.Link('self', {href: '/orders{?id}', title: 'Order', templated:true}),
 		"is object": function(link) { assert.isObject(link); },
 		"is HAL.Link": function(link) { assert.instanceOf(link, HAL.Link); },
