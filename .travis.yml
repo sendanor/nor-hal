@@ -1,3 +1,6 @@
+notifications:
+  email:
+    - jhh@sendanor.com
 language: node_js
 node_js:
    - "0.11"
