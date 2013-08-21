@@ -1,7 +1,7 @@
-[![Build Status](https://secure.travis-ci.org/jheusala/node-nor-hal.png?branch=master)](http://travis-ci.org/jheusala/node-nor-hal)
+[![Build Status](https://secure.travis-ci.org/Sendanor/nor-hal.png?branch=master)](http://travis-ci.org/Sendanor/nor-hal)
 
-node-nor-hal
-============
+nor-hal
+=======
 
 The library is an implementation of [Hypertext Application Language](http://stateless.co/hal_specification.html) for Node.js and JavaScript.
 

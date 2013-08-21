@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/jheusala/node-nor-hal.git"
+    "url": "git://github.com/Sendanor/nor-hal.git"
   },
   "keywords": [
     "hal",
