@@ -87,6 +87,30 @@ vows.describe('Testing HAL').addBatch({
 			".templated is true": function(link) { assert.isTrue(link.templated); }
 		}
 	},
+
+	// Test for linking with Link object
+	"Testing new HAL.Resource({'name':'Item', 'sum':12.34}, '/orders/1') for linking against HAL.Link objects": {
+		topic: new HAL.Resource({'name':'Item', 'sum':12.34}, '/orders/1'),
+		"is object": function(res) { assert.isObject(res); },
+		"is HAL.Resource": function(res) { assert.instanceOf(res, HAL.Resource); },
+		".link(HAL.Link('orders', '/orders/2'))": {
+			topic: function(res) { return HAL.Resource(res).link( new HAL.Link('orders', '/orders/2') ); },
+			"is object": function(res) { assert.isObject(res); },
+			"is HAL.Resource": function(res) { assert.instanceOf(res, HAL.Resource); },
+			".toJSON()": {
+				topic: function(res) { return res.toJSON(); },
+				"is object": function(o) { assert.isObject(o); },
+				".name is 'Item'": function(o) { assert.equal(o.name, 'Item'); },
+				".sum is 12.34": function(o) { assert.equal(o.sum, 12.34); },
+				"._links is object": function(o) { assert.isObject(o._links); },
+				"._links.self is object": function(o) { assert.isObject(o._links.self); },
+				"._links.self.href is '/orders/1'": function(o) { assert.equal(o._links.self.href, '/orders/1'); },
+				"._links.orders is object": function(o) { assert.isObject(o._links.orders); },
+				"._links.orders.href is '/orders/2'": function(o) { assert.equal(o._links.orders.href, '/orders/2'); },
+			}
+		}
+	},
+
 	"new HAL.Resource({'name':'Item', 'sum':12.34}, '/order/1')": {
 		topic: new HAL.Resource({'name':'Item', 'sum':12.34}, '/order/1'),
 		"is object": function(res) { assert.isObject(res); },

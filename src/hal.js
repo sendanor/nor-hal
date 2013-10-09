@@ -135,8 +135,13 @@ HAL_Resource.prototype.link = function(rel, uri) {
 	var self = this,
 	    links = self._data._links,
 	    tmp;
-	rel = rel ? ''+rel : undefined;
-	uri = (uri instanceof Array) ? uri.map(function(u) { return new HAL_Link(rel, u); }) : new HAL_Link(rel, uri);
+	if(rel instanceof HAL_Link) {
+		uri = new HAL_Link(rel, uri);
+		rel = uri.rel;
+	} else {
+		rel = rel ? ''+rel : undefined;
+		uri = (uri instanceof Array) ? uri.map(function(u) { return new HAL_Link(rel, u); }) : new HAL_Link(rel, uri);
+	}
 	if(!rel) {
 		throw new TypeError("rel missing");
 	}
