@@ -110,6 +110,16 @@ function HAL_Resource(obj, uri) {
 	};
 }
 
+/** Get the value of a property in the resource */
+HAL_Resource.prototype.getProperty = function(key) {
+	return this._data[key];
+};
+
+/** Set the value of a property in the resource */
+HAL_Resource.prototype.setProperty = function(key, value) {
+	this._data[key] = value;
+};
+
 /** Get links */
 HAL_Resource.prototype.links = function() {
 	var self = this;
