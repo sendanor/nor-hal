@@ -497,10 +497,32 @@ vows.describe('Testing HAL').addBatch({
 			return new HAL.Resource(['Hello', 'World'], '/orders');
 		}, TypeError);
 	},
-	"new HAL.Resource({'name':'Something') throws TypeError": function() {
-		assert.throws(function () {
-			return new HAL.Resource({'name': 'Something'});
-		}, TypeError);
+	"new HAL.Resource({'name':'Something'})": {
+        topic: function() {
+			return new HAL.Resource({'name':'Something'});
+        },
+		"is object": function(res) { assert.isObject(res); },
+		"is HAL.Resource": function(res) { assert.instanceOf(res, HAL.Resource); },
+		".toJSON()": {
+			topic: function(res) { return res.toJSON(); },
+			"is object": function(o) { assert.isObject(o); },
+			"._links is undefined": function(o) { assert.isUndefined(o._links); },
+			"._embedded is undefined": function(o) { assert.isUndefined(o._embedded); },
+		},
+		".data()": {
+			topic: function(res) { return res.data(); },
+			"is object": function(o) { assert.isObject(o); },
+			"Object.keys(o).toString() is 'name'": function(o) { assert.strictEqual(Object.keys(o).toString(), 'name'); },
+		},
+		".toString()": {
+			topic: function(res) { return res.toString(); },
+			"is string": function(o) { assert.isString(o); },
+			"string content valid": function(str) {
+				assert.strictEqual(str, '{\n'+
+					' "name": "Something"\n'+
+					'}');
+			}
+		}
 	},
 	"new HAL.Resource('Hello world', '/orders')": {
 		topic: function() {
