@@ -1,7 +1,7 @@
 {
-  "name": "nor-hal",
+  "name": "nor-hal-optional",
   "version": "0.0.6",
-  "description": "Hypertext Application Language Library for Node.js",
+  "description": "Hypertext Application Language Library (variant taken from nor-hal that makes self link optional) for Node.js",
   "main": "src/hal.js",
   "directories": {
     "test": "tests"
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/Sendanor/nor-hal.git"
+    "url": "git://github.com/cmanzana/nor-hal.git"
   },
   "keywords": [
     "hal",
