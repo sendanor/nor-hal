@@ -27,7 +27,7 @@ Installation
 
 You can install it simply from NPM:
 
-	npm install nor-hal
+	npm install nor-hal-self-optional
 
 Usage
 -----
