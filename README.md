@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/Sendanor/nor-hal.png?branch=master)](http://travis-ci.org/Sendanor/nor-hal)
+[![Build Status](https://secure.travis-ci.org/cmanzana/nor-hal.png?branch=master)](http://travis-ci.org/cmanzana/nor-hal)
 
 nor-hal
 =======
