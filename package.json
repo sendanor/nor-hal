@@ -1,5 +1,5 @@
 {
-  "name": "nor-hal-optional",
+  "name": "nor-hal-self-optional",
   "version": "0.0.6",
   "description": "Hypertext Application Language Library (variant taken from nor-hal that makes self link optional) for Node.js",
   "main": "src/hal.js",
@@ -19,6 +19,9 @@
     "json"
   ],
   "author": "Jaakko-Heikki Heusala <jheusala@iki.fi>",
+  "contributors": [
+    {"name": "Carlos Manzanares", "email": "carlos.manzanares@gmail.com>"}
+  ], 
   "license": "MIT",
   "readmeFilename": "README.md",
   "devDependencies": {
