@@ -1,6 +1,6 @@
 {
   "name": "nor-hal-self-optional",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Hypertext Application Language Library (variant taken from nor-hal that makes self link optional) for Node.js",
   "main": "src/hal.js",
   "directories": {
