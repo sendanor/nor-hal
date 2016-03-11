@@ -14,6 +14,9 @@ However this module differs from [naholyr/js-hal](https://npmjs.org/package/hal)
  * Our library doesn't support XML (yet)
  * Our license is clearly open source (MIT)
 
+Notice that this is a fork of [sendanor/nor-hal](https://github.com/sendanor/nor-hal) but with the difference that self is optional
+
+
 License
 -------
 
@@ -30,7 +33,7 @@ Usage
 -----
 
 ```javascript
-var hal = require('nor-hal');
+var hal = require('nor-hal-self-optional');
 var resource = new hal.Resource({name: "Orders"}, '/orders')
 	.link('orders', '/orders/1')
 	.link('orders', '/orders/2')
