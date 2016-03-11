@@ -3,5 +3,5 @@ test -e
 if test -d src-inst/; then
 	rm -rf src-inst/
 fi
-jscoverage src/ src-inst/
-vows tests/test-*.js --cover-html
+node_modules/jscoverage/bin/jscoverage src/ src-inst/
+node_modules/vows/bin/vows tests/test-*.js --cover-html

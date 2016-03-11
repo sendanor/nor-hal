@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/Sendanor/nor-hal.png?branch=master)](http://travis-ci.org/Sendanor/nor-hal)
+[![Build Status](https://secure.travis-ci.org/cmanzana/nor-hal.png?branch=master)](http://travis-ci.org/cmanzana/nor-hal)
 
 nor-hal
 =======
@@ -14,6 +14,9 @@ However this module differs from [naholyr/js-hal](https://npmjs.org/package/hal)
  * Our library doesn't support XML (yet)
  * Our license is clearly open source (MIT)
 
+Notice that this is a fork of [sendanor/nor-hal](https://github.com/sendanor/nor-hal) but with the difference that self is optional
+
+
 License
 -------
 
@@ -24,13 +27,13 @@ Installation
 
 You can install it simply from NPM:
 
-	npm install nor-hal
+	npm install nor-hal-self-optional
 
 Usage
 -----
 
 ```javascript
-var hal = require('nor-hal');
+var hal = require('nor-hal-self-optional');
 var resource = new hal.Resource({name: "Orders"}, '/orders')
 	.link('orders', '/orders/1')
 	.link('orders', '/orders/2')
@@ -63,6 +66,20 @@ Resulting output is:
    }
   ]
  }
+}
+```
+
+And for resources without self:
+```javascript
+var hal = require('../src/hal.js');
+var resourceWithoutSelf = new hal.Resource({name: "Cats"});
+```
+
+Resulting output is:
+
+```javascript
+{
+ "name": "Cats"
 }
 ```
 

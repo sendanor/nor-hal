@@ -99,12 +99,8 @@ function HAL_Resource(obj, uri) {
 	if(uri !== undefined) {
 		self._data._links.self = new HAL_Link("self", uri);
 	}
-	
-	if(self._data._links.self === undefined) {
-		throw new TypeError("HAL.Resource must have link relation to self!");
-	}
-	
-	self._helpers = {
+
+    self._helpers = {
 		'linkRelExists': Object.prototype.hasOwnProperty.bind(self._data._links),
 		'embeddedRelExists': Object.prototype.hasOwnProperty.bind(self._data._embedded)
 	};
@@ -210,6 +206,9 @@ HAL_Resource.prototype.toJSON = function() {
 	var obj = do_clone_obj(self._data);
 	if(Object.keys(obj._embedded).length === 0) {
 		delete obj._embedded;
+	}
+	if(Object.keys(obj._links).length === 0) {
+		delete obj._links;
 	}
 	return obj;
 };
