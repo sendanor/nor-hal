@@ -5,8 +5,3 @@ var resource = new hal.Resource({name: "Orders"}, '/orders')
 	.embed('orders', new hal.Resource({name:"Order 1"}, '/orders/1') )
 	.embed('orders', new hal.Resource({name:"Order 2"}, '/orders/2') );
 console.log(''+resource);
-
-console.log('-------------------------');
-
-var resourceWithoutSelf = new hal.Resource({name: "Cats"});
-console.log(''+resourceWithoutSelf);

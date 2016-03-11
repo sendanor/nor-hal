@@ -69,3 +69,17 @@ Resulting output is:
 }
 ```
 
+And for resources without self:
+```javascript
+var hal = require('../src/hal.js');
+var resourceWithoutSelf = new hal.Resource({name: "Cats"});
+```
+
+Resulting output is:
+
+```javascript
+{
+ "name": "Cats"
+}
+```
+
