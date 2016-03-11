@@ -1,6 +1,6 @@
 notifications:
   email:
-    - jhh@sendanor.com
+    - carlos.manzanares@gmail.com
 language: node_js
 node_js:
    - "0.11"
